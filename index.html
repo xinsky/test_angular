@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="currencyApp">
+    <head>
+        <title>Angular test project</title>
+        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/directive.js"></script>
+        <div class="container" ng-controller="currencyController" ng-cloak>
+            <div class="panel-body">
+                <h3 class="text-center">Поиск по Soundcloud</h3>
+                <form name="genreSearch" class="well form-search">
+                    <div class="col-md-4 col-md-offset-4">
+                        <input ng-model = "genreForSearch" type="text" class="form-control search-query" placeholder = "Введите жанр музыки"><br><br>
+                    </div>
+                    <button ng-click="connectButton();" id="connectButton" type="submit" class="btn btn-primary">Поиск</button>
+                    <button ng-click="clearResults();" type="submit" class="btn btn-primary" ng-show="clearFlag">Очистить результаты</button>
+                </form>
+                <span class = "text-danger">{{errMessage}}</span>
+                <div class = "searchPanel">
+                    <div class="row">
+                        <span class = "panel-body text-center col-md-4 col-md-offset-4" ng-show="tableShow">
+                        <button ng-click="viewSwitch();" class="btn btn-primary">{{viewButton}}</button>
+                        </span>
+                    </div>
+                    <div class="row" ng-show ="!simpleView&&tableShow">
+                        <div class="navbar col-md-8 col-md-offset-2 text-center">
+                            <ul class="nav nav-pills col-md-offset-2">
+                                <li class = "active"><a href="#tab1" data-toggle="tab" ng-click="aRank.aSearch='';tRank.tSearch='';dRank.dSearch=timeMass[0];">Поиск по исполнителю</a></li>
+                                <li><a href="#tab2" data-toggle="tab" ng-click="aRank.aSearch='';tRank.tSearch='';dRank.dSearch=timeMass[0];">Поиск по названию</a></li>
+                                <li><a href="#tab3"data-toggle="tab" ng-click="aRank.aSearch='';tRank.tSearch='';dRank.dSearch=timeMass[0];">Отфильтровать по длительности</a></li>
+                            </ul>
+                            <br>
+                            <div class="tab-content panel-body">
+                                <div class="tab-pane active col-md-4 col-md-offset-4" id="tab1">
+                                    <p><input class = "form-control" ng-model = "aRank.aSearch" type="text" class="input-medium search-query" placeholder = "Введите имя автора"></p>
+                                </div>
+                                <div class="tab-pane col-md-4 col-md-offset-4" id="tab2">
+                                    <p><input class = "form-control" ng-model = "tRank.tSearch" type="text" class="input-medium search-query" placeholder = "Введите называние трека"></p>
+                                </div>
+                                <div class="tab-pane col-md-4 col-md-offset-4" id="tab3">
+                                    <p><select class = "form-control" ng-init="dRank.dSearch = timeMass[0];" ng-model = "dRank.dSearch" ng-options="item for item in timeMass"></select></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <content-view></content-view>
+            </div>
+        </div>
+    </body>
+</html>

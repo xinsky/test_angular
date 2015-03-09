@@ -1,0 +1,6 @@
+<ul>
+    <li ng-repeat="track in trackData | orderBy:predicate:curRank | filter: {author:aRank.aSearch}  | filter: {title: tRank.tSearch} | filter: timeFn">
+        <span><a target  = "_blank" ng-href="{{track.src}}">{{track.author + " " + track.title}}</a></span>
+        <span>({{track.duration | date:'mm:ss'}})</span>
+    </li>
+<ul>
